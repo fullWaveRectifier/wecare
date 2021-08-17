@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
+import java.util.List;
 
 
 @RestController
@@ -20,8 +21,6 @@ public class UserController {
     @GetMapping("users/{userId}")
     ResponseEntity<UserDTO> getUserProfile(@Valid @PathVariable String userId){
         UserDTO user = userService.getUserById(userId);
-        System.out.println(userId);
         return new ResponseEntity<>(user, HttpStatus.FOUND);
     }
-
 }

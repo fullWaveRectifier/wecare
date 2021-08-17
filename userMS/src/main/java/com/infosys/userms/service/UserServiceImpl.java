@@ -6,7 +6,6 @@ import com.infosys.userms.repository.UserRepo;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.Optional;
 
 @Service
@@ -23,6 +22,9 @@ public class UserServiceImpl implements UserService{
         Optional<UserEntity> user = userRepo.findById(id);
         System.out.println(user.isPresent());
         if(user.isPresent()) return mapper.map(user.get(), UserDTO.class);
+
+        //  Todo: Throw Exceptions
+
         else return null;
     }
 
