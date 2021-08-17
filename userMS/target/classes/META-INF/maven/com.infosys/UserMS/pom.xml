@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.infosys</groupId>
-	<artifactId>bookingMS</artifactId>
+	<artifactId>UserMS</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>bookingMS</name>
-	<description>Demo project for Spring Boot</description>
+	<name>UserMS</name>
+	<description>User functionalities </description>
 	<properties>
 		<java.version>11</java.version>
 		<spring-cloud.version>Greenwich.SR2</spring-cloud.version>
@@ -23,17 +23,18 @@
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 <!--		<dependency>-->
 <!--			<groupId>org.springframework.cloud</groupId>-->
 <!--			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>-->
 <!--		</dependency>-->
+
 
 		<dependency>
 			<groupId>org.modelmapper</groupId>
