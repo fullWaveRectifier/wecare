@@ -1,13 +1,25 @@
-package com.infosys.bookingms.dto;
+package com.infosys.bookingms.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.time.LocalDate;
 
-public class BookingDTO {
+@Entity
+@Table(name = "bookingtable")
+public class BookingEntity {
 
+    @Id
+    @Column(name = "booking_id")
     int bookingId;
+    @Column(name = "user_id")
     String userId;
+    @Column(name = "coach_id")
     String coachId;
+    @Column(name = "slot")
     String slot;
+    @Column(name = "appointment_date")
     LocalDate appointmentDate;
 
     public int getBookingId() {
