@@ -26,6 +26,8 @@ public class CoachServiceImpl implements CoachService{
     public CoachDTO getCoachById(String id) {
         Optional<Coach> coach = coachRepo.findById(id);
         if(coach.isPresent()) return mapper.map(coach.get(), CoachDTO.class);
+
+        // Todo: Throw Exception
         else return null;
     }
 
@@ -34,6 +36,8 @@ public class CoachServiceImpl implements CoachService{
         List<Coach> coaches = coachRepo.findAll();
         Type listType = new TypeToken<List<CoachDTO>>(){}.getType();
         return mapper.map(coaches,listType);
+
+        //Todo: Throw Exception
     }
 
     @Override
