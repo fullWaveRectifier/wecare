@@ -1,5 +1,7 @@
 package com.infosys.userms.service;
 
-public interface UserService {
+import com.infosys.userms.dto.UserDTO;
 
+public interface UserService {
+UserDTO getUserById(String id);
 }
