@@ -1,6 +1,7 @@
 package com.infosys.coachms.service;
 
 import com.infosys.coachms.dto.CoachDTO;
+import com.infosys.coachms.dto.LoginDTO;
 import com.infosys.coachms.entity.Coach;
 import com.infosys.coachms.repository.CoachRepository;
 import org.modelmapper.ModelMapper;
@@ -41,5 +42,13 @@ public class CoachServiceImpl implements CoachService{
     public String createCoach(CoachDTO coachDTO) {
         coachRepo.saveAndFlush(mapper.map(coachDTO,Coach.class));
         return "coach created";
+    }
+    
+    @Override
+    public Boolean coachLogin(LoginDTO login) {
+    	String id = login.getId();
+    	String password = login.getPassword();
+    	Optional<Coach> result = coachRepo.findById(id);
+    	return result.isPresent();
     }
 }

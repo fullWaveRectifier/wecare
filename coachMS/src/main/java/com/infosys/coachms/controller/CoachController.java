@@ -1,6 +1,7 @@
 package com.infosys.coachms.controller;
 
 import com.infosys.coachms.dto.CoachDTO;
+import com.infosys.coachms.dto.LoginDTO;
 import com.infosys.coachms.service.CoachService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,4 +34,10 @@ public class CoachController {
     List<CoachDTO> showAllCoaches() {
         return coachService.getAllCoaches();
     }
+    @PostMapping("/coaches/login")
+    public ResponseEntity<Boolean> loginCoach(LoginDTO login){
+    	Boolean result = coachService.coachLogin(login);
+    	return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+    
 }

@@ -1,6 +1,8 @@
 package com.infosys.coachms.service;
 
 import com.infosys.coachms.dto.CoachDTO;
+import com.infosys.coachms.dto.LoginDTO;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -12,4 +14,6 @@ public interface CoachService {
     List<CoachDTO> getAllCoaches();
 
     String createCoach(CoachDTO coachDTO);
+    
+    Boolean coachLogin(LoginDTO login);
 }
