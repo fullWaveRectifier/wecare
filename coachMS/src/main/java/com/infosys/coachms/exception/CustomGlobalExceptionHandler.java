@@ -27,9 +27,12 @@ public class CustomGlobalExceptionHandler {
 	    ex.getBindingResult().getAllErrors().forEach((error) -> {
 	        String fieldName = ((FieldError) error).getField();
 	        String errorMessage = error.getDefaultMessage();
-	       
 	        errorList.add(errorMessage);
 	    });
 	    return new ErrorMessage(HttpStatus.BAD_REQUEST.value(),errorList.toString());
+	}
+	@ExceptionHandler(WeCareException.class)
+	public ErrorMessage handleWeCareException(WeCareException ex) {
+		return new ErrorMessage(HttpStatus.BAD_REQUEST.value(), ex.getMessage());
 	}
 }
