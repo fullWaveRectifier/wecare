@@ -9,6 +9,7 @@ import com.infosys.coachms.exception.WeCareException;
 import com.infosys.coachms.repository.CoachRepository;
 
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +29,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.lang.reflect.Type;
 
-import java.util.Arrays;
-
-
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class CoachServiceImpl implements CoachService{
@@ -86,17 +83,14 @@ public class CoachServiceImpl implements CoachService{
 
 
 	@Override
+    @HystrixCommand(fallbackMethod = "fallbackGetBookingSchedules")
 	public List<BookingDTO> getBookingSchedules(String coachId) {
-		
-		
-			
-		ResponseEntity<BookingDTO[]> responseEntity =
-				   template.getForEntity("htttp://localhost:8083/coaches/booking"+coachId,BookingDTO[].class);
-		BookingDTO[] booking=responseEntity.getBody();	
-			
-			 
-		return Arrays.asList(booking); 
-		
-	
+        ResponseEntity<BookingDTO[]> responseEntity = template.getForEntity("http://BookingMS/coaches/booking/" + coachId, BookingDTO[].class);
+        BookingDTO[] booking = responseEntity.getBody();
+        return Arrays.asList(booking);
 	}
+
+    public List<BookingDTO> fallbackGetBookingSchedules(String coachId){
+        return Collections.emptyList();
+    }
 }
