@@ -7,12 +7,19 @@ import com.infosys.userms.dto.LoginDTO;
 import com.infosys.userms.dto.UserDTO;
 import com.infosys.userms.entity.UserEntity;
 import com.infosys.userms.exception.WeCareException;
+import com.infosys.userms.exception.ExceptionConstants;
 import com.infosys.userms.repository.UserRepo;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,6 +31,9 @@ public class UserServiceImpl implements UserService{
 
     @Autowired
     ModelMapper mapper;
+    
+    @Autowired
+    RestTemplate restTemplate;
 
     @Override
     public UserDTO getUserById(String id) {
@@ -55,8 +65,18 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public List<BookingDTO> findBookingByUserId(String userId) {
 	    Optional<UserEntity> userList = userRepo.findByUserId(userId);
-		
-		return null;
+	    ResponseEntity<BookingDTO[]> userInst = restTemplate.getForEntity("http://localhost:8083/users/booking/" + userId, BookingDTO[].class);
+//	    ResponseEntity<Employee[]> response =
+//	    		  restTemplate.getForEntity(
+//	    		  "http://localhost:8080/employees/",
+//	    		  Employee[].class);
+	    BookingDTO[] bookings = userInst.getBody();
+	    		
+	   // System.out.println(userList);
+		if(userList.isPresent()) {
+			return Arrays.asList(bookings);
+		}
+		else throw new WeCareException(ExceptionConstants.USER_NOT_FOUND.toString(), HttpStatus.BAD_REQUEST.value());
 	}
 
 }

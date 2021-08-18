@@ -31,9 +31,9 @@ public class UserController {
 
     
     @GetMapping("/users/booking/{userId}")
-    List<BookingDTO> showMyAppointments(String userId){
-        UserDTO user = userService.getUserById(userId);
-        return new List<>(user, HttpStatus.FOUND);
+    List<BookingDTO> showMyAppointments(@PathVariable String userId){
+        return userService.findBookingByUserId(userId);
+    }
 
     @PostMapping("/users/login")
     ResponseEntity<Boolean> loginUser(@RequestBody LoginDTO login){
