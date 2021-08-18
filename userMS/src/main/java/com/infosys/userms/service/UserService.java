@@ -7,7 +7,11 @@ import com.infosys.userms.dto.UserDTO;
 import java.util.List;
 
 public interface UserService {
+
    UserDTO getUserById(String id);
    Boolean userLogin(LoginDTO login);
    List<BookingDTO> findBookingByUserId(String userId);
+   String createUser(UserDTO userDTO);
+	
+	
 }

@@ -3,7 +3,6 @@ package com.infosys.coachms.service;
 import com.infosys.coachms.dto.CoachDTO;
 import com.infosys.coachms.dto.LoginDTO;
 import com.infosys.coachms.entity.Coach;
-import com.infosys.coachms.exception.AllSignUpFieldException;
 import com.infosys.coachms.exception.WeCareException;
 import com.infosys.coachms.repository.CoachRepository;
 import org.modelmapper.ModelMapper;
@@ -13,7 +12,6 @@ import org.springframework.context.MessageSource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.infosys.coachms.exception.AllSignUpFieldException;
 
 import java.lang.reflect.Type;
 import java.util.List;
@@ -48,12 +46,6 @@ public class CoachServiceImpl implements CoachService{
         //Todo: Throw Exception
     }
 
-//    @Override
-//    @Transactional
-//    public String createCoach(CoachDTO coachDTO) {
-//        coachRepo.saveAndFlush(mapper.map(coachDTO,Coach.class));
-//        return "coach created";
-//    }
     @Override
     public String createCoach(CoachDTO coachDTO){
         coachRepo.save(mapper.map(coachDTO,Coach.class));

@@ -1,13 +1,13 @@
 package com.infosys.bookingms.exception;
 
-public class WecareException extends RuntimeException {
+public class WeCareException extends RuntimeException {
     private int errorCode;
     private String message;
 
-    public WecareException() {
+    public WeCareException() {
     }
 
-    public WecareException(String message, int errorCode) {
+    public WeCareException(String message, int errorCode) {
         super(message);
         this.errorCode = errorCode;
         this.message = message;

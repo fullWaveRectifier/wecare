@@ -63,6 +63,7 @@ public class UserServiceImpl implements UserService{
     }
 
 	@Override
+
 	public List<BookingDTO> findBookingByUserId(String userId) {
 	    Optional<UserEntity> userList = userRepo.findByUserId(userId);
 	    ResponseEntity<BookingDTO[]> userInst = restTemplate.getForEntity("http://localhost:8083/users/booking/" + userId, BookingDTO[].class);
@@ -77,6 +78,13 @@ public class UserServiceImpl implements UserService{
 			return Arrays.asList(bookings);
 		}
 		else throw new WeCareException(ExceptionConstants.USER_NOT_FOUND.toString(), HttpStatus.BAD_REQUEST.value());
+	}
+	
+	public String createUser(UserDTO userDTO) {
+		
+		userRepo.save(mapper.map(userDTO,UserEntity.class));
+		return "Your Profile is Created Successfully User id is:"+userDTO.getUserId();
+
 	}
 
 }

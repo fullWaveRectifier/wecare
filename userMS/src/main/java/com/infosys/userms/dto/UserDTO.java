@@ -20,7 +20,8 @@ public class UserDTO {
     @Email(message = "{email.error}")
     private String email;
     @NotNull(message = "{field.empty}")
-    @Size(min = 6,max = 6,message = "{pincode.error}")
+    @Min(value = 100000,message = "{pincode.error}")
+    @Max(value = 999999,message = "{pincode.error}")
     private int pincode;
     @NotNull(message = "{field.empty}")
     @Size(min = 3,max = 20,message = "{address.error}")
