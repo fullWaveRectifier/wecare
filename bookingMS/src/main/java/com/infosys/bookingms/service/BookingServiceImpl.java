@@ -3,7 +3,7 @@ package com.infosys.bookingms.service;
 import com.infosys.bookingms.dto.BookingDTO;
 import com.infosys.bookingms.entity.BookingEntity;
 import com.infosys.bookingms.exception.ExceptionConstants;
-import com.infosys.bookingms.exception.WecareException;
+import com.infosys.bookingms.exception.WeCareException;
 import com.infosys.bookingms.repository.BookingRepository;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -34,7 +34,7 @@ public class BookingServiceImpl implements BookingService{
            BookingEntity bookingEntity = bookingRepository.saveAndFlush(mapper.map(bookingDTO,BookingEntity.class));
            return true;
         }else {
-            throw new WecareException(ExceptionConstants.BOOKING_ALREADY_EXISTS.toString(), HttpStatus.NOT_FOUND.value());
+            throw new WeCareException(ExceptionConstants.BOOKING_ALREADY_EXISTS.toString(), HttpStatus.NOT_FOUND.value());
         }
     }
 
@@ -48,7 +48,7 @@ public class BookingServiceImpl implements BookingService{
             oldBookingDetails.setSlot(bookingDTO.getSlot());
             return true;
         }else {
-            throw new WecareException(ExceptionConstants.BOOKING_ALREADY_EXISTS.toString(), HttpStatus.NOT_FOUND.value());
+            throw new WeCareException(ExceptionConstants.BOOKING_ALREADY_EXISTS.toString(), HttpStatus.NOT_FOUND.value());
         }
     }
 
