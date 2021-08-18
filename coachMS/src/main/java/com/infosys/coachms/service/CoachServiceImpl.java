@@ -3,6 +3,7 @@ package com.infosys.coachms.service;
 import com.infosys.coachms.dto.CoachDTO;
 import com.infosys.coachms.dto.LoginDTO;
 import com.infosys.coachms.entity.Coach;
+import com.infosys.coachms.exception.WeCareException;
 import com.infosys.coachms.repository.CoachRepository;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
