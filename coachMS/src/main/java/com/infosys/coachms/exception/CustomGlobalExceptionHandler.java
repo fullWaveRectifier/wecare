@@ -35,7 +35,6 @@ public class CustomGlobalExceptionHandler {
 	    ex.getBindingResult().getAllErrors().forEach((error) -> {
 	        String fieldName = ((FieldError) error).getField();
 	        String errorMessage = error.getDefaultMessage();
-	       
 	        errorList.add(errorMessage);
 	    });
 	    return new ErrorMessage(HttpStatus.BAD_REQUEST.value(),errorList.get(0));
