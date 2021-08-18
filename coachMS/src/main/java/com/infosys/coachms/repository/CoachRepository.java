@@ -8,4 +8,5 @@ import java.util.Optional;
 
 public interface CoachRepository extends JpaRepository<Coach,String> {
     Optional<Coach> findById(String id);
+
 }

@@ -2,6 +2,7 @@ package com.infosys.coachms.service;
 
 import com.infosys.coachms.dto.CoachDTO;
 import com.infosys.coachms.dto.LoginDTO;
+import com.infosys.coachms.exception.WeCareException;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -15,5 +16,5 @@ public interface CoachService {
 
     String createCoach(CoachDTO coachDTO);
     
-    Boolean coachLogin(LoginDTO login);
+    Boolean coachLogin(LoginDTO login) throws WeCareException;
 }
