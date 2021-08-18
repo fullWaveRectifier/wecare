@@ -18,15 +18,7 @@ public class CustomGlobalExceptionHandler {
 	public String exceptionHandler(Exception ex) {
 		return ex.getMessage();
 	}
-	
-	@ExceptionHandler(AllSignUpFieldException.class)
-	public ResponseEntity<ErrorMessage> exceptionHandler2(AllSignUpFieldException ex) {
-		ErrorMessage error = new ErrorMessage();
-		error.setErrorCode(HttpStatus.BAD_REQUEST.value());
-		error.setMessage(ex.getMessage());
-		return new ResponseEntity<>(error, HttpStatus.OK);
-	}
-	
+		
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ErrorMessage handleValidationExceptions(
 	  MethodArgumentNotValidException ex) {
@@ -38,6 +30,6 @@ public class CustomGlobalExceptionHandler {
 	       
 	        errorList.add(errorMessage);
 	    });
-	    return new ErrorMessage(HttpStatus.BAD_REQUEST.value(),errorList.get(0));
+	    return new ErrorMessage(HttpStatus.BAD_REQUEST.value(),errorList.toString());
 	}
 }

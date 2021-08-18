@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface UserService {
 UserDTO getUserById(String id);
+String createUser(UserDTO userDTO);
 }

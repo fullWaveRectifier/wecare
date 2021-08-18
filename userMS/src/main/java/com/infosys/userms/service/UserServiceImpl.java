@@ -28,4 +28,11 @@ public class UserServiceImpl implements UserService{
         else return null;
     }
 
+	@Override
+	public String createUser(UserDTO userDTO) {
+		
+		userRepo.save(mapper.map(userDTO,UserEntity.class));
+		return "Your Profile is Created Successfully User id is:"+userDTO.getUserId();
+	}
+
 }
