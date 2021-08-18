@@ -1,7 +1,9 @@
 package com.infosys.coachms.controller;
 
 import com.infosys.coachms.dto.CoachDTO;
+import com.infosys.coachms.dto.LoginDTO;
 import com.infosys.coachms.exception.AllSignUpFieldException;
+import com.infosys.coachms.exception.WeCareException;
 import com.infosys.coachms.service.CoachService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,4 +36,10 @@ public class CoachController {
     List<CoachDTO> showAllCoaches() {
         return coachService.getAllCoaches();
     }
+    @PostMapping("/coaches/login")
+    public ResponseEntity<Boolean> loginCoach(@RequestBody LoginDTO login) throws WeCareException{
+    	Boolean result = coachService.coachLogin(login);
+    	return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+    
 }

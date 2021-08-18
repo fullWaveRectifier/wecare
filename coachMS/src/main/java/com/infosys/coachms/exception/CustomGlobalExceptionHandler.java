@@ -39,4 +39,8 @@ public class CustomGlobalExceptionHandler {
 	    });
 	    return new ErrorMessage(HttpStatus.BAD_REQUEST.value(),errorList.get(0));
 	}
+	@ExceptionHandler(WeCareException.class)
+	public ErrorMessage handleWeCareException(WeCareException ex) {
+		return new ErrorMessage(HttpStatus.BAD_REQUEST.value(), ex.getMessage());
+	}
 }
