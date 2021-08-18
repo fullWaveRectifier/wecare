@@ -23,4 +23,11 @@ public class UserController {
         UserDTO user = userService.getUserById(userId);
         return new ResponseEntity<>(user, HttpStatus.FOUND);
     }
+    
+    @GetMapping("/users/booking/{userId}")
+    List<BookingDTO> showMyAppointments(String userId){
+        UserDTO user = userService.getUserById(userId);
+        return new List<>(user, HttpStatus.FOUND);
+    }
 }
+

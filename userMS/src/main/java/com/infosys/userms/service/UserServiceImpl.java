@@ -1,11 +1,14 @@
 package com.infosys.userms.service;
 
+import com.infosys.userms.dto.BookingDTO;
 import com.infosys.userms.dto.UserDTO;
 import com.infosys.userms.entity.UserEntity;
 import com.infosys.userms.repository.UserRepo;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -27,5 +30,12 @@ public class UserServiceImpl implements UserService{
 
         else return null;
     }
+
+	@Override
+	public List<BookingDTO> findBookingByUserId(String userId) {
+	    Optional<UserEntity> userList = userRepo.findByUserId(userId);
+		
+		return null;
+	}
 
 }
