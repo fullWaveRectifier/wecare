@@ -1,27 +1,39 @@
 package com.infosys.coachms.service;
 
+import com.infosys.coachms.dto.BookingDTO;
 import com.infosys.coachms.dto.CoachDTO;
 import com.infosys.coachms.dto.LoginDTO;
 import com.infosys.coachms.entity.Coach;
 import com.infosys.coachms.exception.AllSignUpFieldException;
 import com.infosys.coachms.exception.WeCareException;
 import com.infosys.coachms.repository.CoachRepository;
+
+
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.context.MessageSource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.RestTemplate;
+
 import com.infosys.coachms.exception.AllSignUpFieldException;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-
+import java.net.URI;
 @Service
 public class CoachServiceImpl implements CoachService{
-
+	@Autowired
+	private RestTemplate template;
     @Autowired
     private CoachRepository coachRepo;
 
@@ -38,6 +50,7 @@ public class CoachServiceImpl implements CoachService{
         // Todo: Throw Exception
         else return null;
     }
+   
 
     @Override
     public List<CoachDTO> getAllCoaches() {
@@ -79,4 +92,20 @@ public class CoachServiceImpl implements CoachService{
     		}
     	}
     }
+
+
+	@Override
+	public List<BookingDTO> getBookingSchedules(String coachId) {
+		
+		
+			
+		ResponseEntity<BookingDTO[]> responseEntity =
+				   template.getForEntity("htttp://localhost:8083/coaches/booking"+coachId,BookingDTO[].class);
+		BookingDTO[] booking=responseEntity.getBody();	
+			
+			 
+		return Arrays.asList(booking); 
+		
+	
+	}
 }
