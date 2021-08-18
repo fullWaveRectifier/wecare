@@ -1,6 +1,8 @@
 package com.infosys.userms.controller;
 
+import com.infosys.userms.dto.LoginDTO;
 import com.infosys.userms.dto.UserDTO;
+import com.infosys.userms.exception.WeCareException;
 import com.infosys.userms.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,9 +29,20 @@ public class UserController {
         UserDTO user = userService.getUserById(userId);
         return new ResponseEntity<>(user, HttpStatus.FOUND);
     }
+
     
     @PostMapping("/users")
     ResponseEntity<String> createUser(@Valid @RequestBody UserDTO userDTO){
         return new ResponseEntity<>(userService.createUser(userDTO),HttpStatus.OK);
+
+    }
+    @PostMapping("/users/login")
+    ResponseEntity<Boolean> loginUser(@RequestBody LoginDTO login){
+    	try {
+    		Boolean result = userService.userLogin(login);
+			return new ResponseEntity<Boolean>(result,HttpStatus.OK);
+		} catch (WeCareException e) {
+			return new ResponseEntity<Boolean>(false,HttpStatus.OK);
+		}
     }
 }

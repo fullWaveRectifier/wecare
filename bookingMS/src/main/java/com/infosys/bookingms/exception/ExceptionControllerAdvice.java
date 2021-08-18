@@ -2,16 +2,8 @@ package com.infosys.bookingms.exception;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @RestControllerAdvice
 public class ExceptionControllerAdvice {
@@ -27,10 +19,10 @@ public class ExceptionControllerAdvice {
     @Autowired
     MessageSource mssgSource;
 
-    @ExceptionHandler(WecareException.class)
-    public ErrorResponse exceptionHandler2(WecareException ex) {
-        WecareException exceptionResponse =
-                new WecareException(ex.getMessage(), ex.getErrorCode());
+    @ExceptionHandler(WeCareException.class)
+    public ErrorResponse exceptionHandler2(WeCareException ex) {
+        WeCareException exceptionResponse =
+                new WeCareException(ex.getMessage(), ex.getErrorCode());
         return new ErrorResponse(exceptionResponse.getMessage(), exceptionResponse.getErrorCode());
 
     }
