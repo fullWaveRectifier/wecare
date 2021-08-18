@@ -3,10 +3,12 @@ package com.infosys;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 public class CoachMsApplication {
@@ -18,6 +20,12 @@ public class CoachMsApplication {
 	@Bean
 	public ModelMapper mapper() {
 		return new ModelMapper();
+	}
+
+	@Bean
+	@LoadBalanced
+	public RestTemplate restTemplate(){
+		return new RestTemplate();
 	}
 
 	@Bean
