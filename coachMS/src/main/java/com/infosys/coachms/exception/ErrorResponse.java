@@ -1,23 +1,30 @@
 package com.infosys.coachms.exception;
 
-public class WeCareException extends RuntimeException{
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+
+
+public class ErrorResponse {
+    @Autowired
+    private MessageSource messageSource;
+
     private String message;
     private int errorCode;
 
-    public WeCareException(String message, int errorCode) {
-        super(message);
+    public ErrorResponse(String message, int errorCode) {
         this.message = message;
+//        this.message = messageSource.getMessage("user.not.found", null, Locale.US);
         this.errorCode = errorCode;
     }
-    public WeCareException() {}
 
-    @Override
     public String getMessage() {
         return message;
     }
 
     public void setMessage(String message) {
         this.message = message;
+
+
     }
 
     public int getErrorCode() {

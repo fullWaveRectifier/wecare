@@ -36,7 +36,7 @@ public class CoachController {
         return coachService.getAllCoaches();
     }
     @PostMapping("/coaches/login")
-    public ResponseEntity<Boolean> loginCoach(@RequestBody LoginDTO login) throws WeCareException{
+    public ResponseEntity<Boolean> loginCoach(@RequestBody LoginDTO login) throws WeCareException {
     	try {
     		Boolean result = coachService.coachLogin(login);
 			return new ResponseEntity<Boolean>(result,HttpStatus.OK);
