@@ -1,29 +1,30 @@
 package com.infosys.bookingms.exception;
 
-public class WecareException extends RuntimeException {
+public class ErrorResponse {
     private int errorCode;
     private String message;
 
-    public WecareException() {
+    public ErrorResponse(String message, int errorCode) {
+        this.message = message;
+        this.errorCode=errorCode;
     }
 
-    public WecareException(String message, int errorCode) {
-        super(message);
-        this.errorCode = errorCode;
-        this.message = message;
+    public ErrorResponse() {
     }
 
     public int getErrorCode() {
         return errorCode;
     }
+
     public void setErrorCode(int errorCode) {
         this.errorCode = errorCode;
     }
+
     public String getMessage() {
         return message;
     }
+
     public void setMessage(String message) {
         this.message = message;
     }
-
 }
