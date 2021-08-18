@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService{
         Optional<UserEntity> user = userRepo.findById(id);
         System.out.println(user.isPresent());
         if(user.isPresent()) return mapper.map(user.get(), UserDTO.class);
-        else throw new WeCareException("askjfaklsjflasjfkl", HttpStatus.OK.value());
+        else throw new WeCareException(ExceptionConstants.USER_NOT_FOUND.toString(), HttpStatus.OK.value());
     }
     
     @Override
@@ -54,11 +54,11 @@ public class UserServiceImpl implements UserService{
     			return true;
     		}
     		else {
-    			throw new WeCareException("COACH_NOT_FOUND", HttpStatus.OK.value());
+    			throw new WeCareException(ExceptionConstants.USER_NOT_FOUND.toString(), HttpStatus.OK.value());
     		}
     	}
     	else {
-    		throw new WeCareException("COACH_NOT_FOUND", HttpStatus.OK.value());
+    		throw new WeCareException(ExceptionConstants.USER_NOT_FOUND.toString(), HttpStatus.OK.value());
     	}
     }
 
