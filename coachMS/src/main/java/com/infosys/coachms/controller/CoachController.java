@@ -14,6 +14,7 @@ import java.util.List;
 @RestController
 @Validated
 public class CoachController {
+	
 
     @Autowired
     private CoachService coachService;
@@ -32,5 +33,10 @@ public class CoachController {
     @GetMapping("/coaches/all")
     List<CoachDTO> showAllCoaches() {
         return coachService.getAllCoaches();
+    }
+    
+    @GetMapping("/coaches/booking/{coachId}")
+    List<BookingDTO> showMySchedules() {
+        return bookingService.getAllSchedules ();
     }
 }
