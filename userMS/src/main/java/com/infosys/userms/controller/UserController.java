@@ -26,7 +26,7 @@ public class UserController {
     @GetMapping("users/{userId}")
     ResponseEntity<UserDTO> getUserProfile(@Valid @PathVariable String userId){
         UserDTO user = userService.getUserById(userId);
-        return new ResponseEntity<>(user, HttpStatus.FOUND);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     
