@@ -14,5 +14,5 @@ public interface CoachService {
 List<BookingDTO> getBookingSchedules(String coachId);
     String createCoach(CoachDTO coachDTO);
     
-    Boolean coachLogin(LoginDTO login) throws WeCareException;
+    Boolean loginCoach(LoginDTO login) throws WeCareException;
 }

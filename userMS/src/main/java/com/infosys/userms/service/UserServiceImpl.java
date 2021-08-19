@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService{
     }
     
     @Override
-    public Boolean userLogin(LoginDTO login) {
+    public Boolean loginUser(LoginDTO login) {
     	String id= login.getId();
     	String password = login.getPassword();
     	Optional<UserEntity> result =  userRepo.findById(id);

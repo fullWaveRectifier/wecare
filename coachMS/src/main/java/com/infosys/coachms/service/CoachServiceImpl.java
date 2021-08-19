@@ -65,7 +65,7 @@ public class CoachServiceImpl implements CoachService{
     }
     
     @Override
-    public Boolean coachLogin(LoginDTO login) throws WeCareException {
+    public Boolean loginCoach(LoginDTO login) throws WeCareException {
     	String id = login.getId();
     	String password = login.getPassword();
     	Optional<Coach> result = coachRepo.findById(id);

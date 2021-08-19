@@ -24,7 +24,7 @@ public class UserController {
     UserService userService;
 
     @GetMapping("users/{userId}")
-    ResponseEntity<UserDTO> getUserProfile(@Valid @PathVariable String userId){
+    ResponseEntity<UserDTO> getUserProfile(@PathVariable String userId){
         UserDTO user = userService.getUserById(userId);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
@@ -43,9 +43,9 @@ public class UserController {
     }
 
     @PostMapping("/users/login")
-    ResponseEntity<Boolean> loginUser(@RequestBody LoginDTO login){
+    ResponseEntity<Boolean> loginUser(@Valid @RequestBody LoginDTO login){
     	try {
-    		Boolean result = userService.userLogin(login);
+    		Boolean result = userService.loginUser(login);
 			return new ResponseEntity<Boolean>(result,HttpStatus.OK);
 		} catch (WeCareException e) {
 			return new ResponseEntity<Boolean>(false,HttpStatus.OK);

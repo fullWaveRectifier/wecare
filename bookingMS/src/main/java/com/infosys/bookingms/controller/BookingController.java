@@ -21,7 +21,7 @@ public class BookingController {
     private BookingService bookingService;
 
     @PostMapping("/users/{userId}/booking/{coachId}")
-    public ResponseEntity<Boolean> bookAppointment(@Valid @PathVariable String userId, @PathVariable String coachId, @RequestBody BookingDTO bookingDTO){
+    public ResponseEntity<Boolean> bookAppointment(@PathVariable String userId, @PathVariable String coachId,@Valid @RequestBody BookingDTO bookingDTO){
         bookingDTO.setUserId(userId);
         bookingDTO.setCoachId(coachId);
 
@@ -30,7 +30,7 @@ public class BookingController {
     }
 
     @PutMapping("/booking/{bookingId}")
-    public ResponseEntity<Boolean> rescheduleAppointment(@Valid @PathVariable int bookingId, @RequestBody BookingDTO bookingDTO){
+    public ResponseEntity<Boolean> rescheduleAppointment(@PathVariable int bookingId,@Valid @RequestBody BookingDTO bookingDTO){
         bookingDTO.setBookingId(bookingId);
 
         return new ResponseEntity<>(bookingService.rescheduleAppointment(bookingDTO),HttpStatus.OK);

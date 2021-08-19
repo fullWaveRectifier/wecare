@@ -29,9 +29,9 @@ public class CoachController {
     }
 
     @GetMapping("coaches/{coachId}")
-    ResponseEntity<CoachDTO> getCoachProfile(@Valid @PathVariable String coachId){
+    ResponseEntity<CoachDTO> getCoachProfile(@PathVariable String coachId){
         CoachDTO coach = coachService.getCoachById(coachId);
-        return new ResponseEntity<>(coach, HttpStatus.FOUND);
+        return new ResponseEntity<>(coach, HttpStatus.OK);
     }
 
     @GetMapping("/coaches/all")
@@ -47,9 +47,9 @@ public class CoachController {
     }
 
     @PostMapping("/coaches/login")
-    public ResponseEntity<Boolean> loginCoach(@RequestBody LoginDTO login) throws WeCareException {
+    public ResponseEntity<Boolean> loginCoach(@Valid @RequestBody LoginDTO login) throws WeCareException {
     	try {
-    		Boolean result = coachService.coachLogin(login);
+    		Boolean result = coachService.loginCoach(login);
 			return new ResponseEntity<Boolean>(result,HttpStatus.OK);
 		} catch (WeCareException e) {
 			return new ResponseEntity<Boolean>(false,HttpStatus.OK);
