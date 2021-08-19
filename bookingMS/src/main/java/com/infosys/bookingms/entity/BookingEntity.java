@@ -1,9 +1,6 @@
 package com.infosys.bookingms.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -11,6 +8,7 @@ import java.time.LocalDate;
 public class BookingEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "booking_id")
     int bookingId;
     @Column(name = "user_id")

@@ -54,7 +54,7 @@ public class CoachServiceImpl implements CoachService{
     public List<CoachDTO> getAllCoaches() {
         List<Coach> coaches = coachRepo.findAll();
         Type listType = new TypeToken<List<CoachDTO>>(){}.getType();
-        if (coaches.isEmpty()) return mapper.map(coaches,listType);
+        if (!coaches.isEmpty()) return mapper.map(coaches,listType);
         else throw new WeCareException(ExceptionConstants.COACH_NOT_FOUND.toString(), HttpStatus.BAD_REQUEST.value());
     }
 
